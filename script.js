@@ -44,13 +44,56 @@ let currentQuestion = "";
 
 function startInterview(){
 
-let role = document.getElementById("role").value;
+const questions = {
+"Software Developer":[
+"Tell me about yourself",
+"Explain OOP concepts",
+"What is REST API?",
+"Explain a project you built",
+"What are data structures?"
+],
 
+"Web Developer":[
+"What is HTML, CSS, JS?",
+"What is responsive design?",
+"Explain flexbox",
+"What is DOM?",
+"Explain a website you made"
+],
+
+"Data Analyst":[
+"What is data cleaning?",
+"What is Excel used for?",
+"Explain data visualization",
+"What is SQL?",
+"Describe a data project"
+],
+
+"HR Interview":[
+"Tell me about yourself",
+"What are your strengths?",
+"What are your weaknesses?",
+"Why should we hire you?",
+"Where do you see yourself in 5 years?"
+],
+
+"Product Manager":[
+"How do you prioritize features?",
+"Explain a product you like",
+"How do you handle failure?",
+"How do you gather user feedback?"
+]
+};
+
+function startInterview(){
+
+let role = document.getElementById("role").value;
 let roleQuestions = questions[role];
 
-currentQuestion = roleQuestions[Math.floor(Math.random()*roleQuestions.length)];
+let randomQuestion =
+roleQuestions[Math.floor(Math.random()*roleQuestions.length)];
 
-document.getElementById("question").innerText = currentQuestion;
+document.getElementById("question").innerText = randomQuestion;
 
 }
 
@@ -68,6 +111,29 @@ if(answer.includes("project")) score += 20;
 document.getElementById("feedback").innerHTML =
 "🔥 AI Score: " + score + "/100";
 
-document.getElementById("nextBtn").disabled = false;
+document.getElementById("scoreBar").value = score;
+
+}
+
+function nextQuestion(){
+
+document.getElementById("answer").value = "";
+document.getElementById("feedback").innerHTML = "";
+document.getElementById("scoreBar").value = 0;
+
+startInterview();
+
+}
+
+function startVoice(){
+
+const recognition = new webkitSpeechRecognition();
+
+recognition.onresult = function(event){
+document.getElementById("answer").value =
+event.results[0][0].transcript;
+}
+
+recognition.start();
 
 }
