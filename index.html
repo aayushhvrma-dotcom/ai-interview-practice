@@ -10,7 +10,7 @@
 <div class="container">
 
 <h1>🤖 AI Interview Practice</h1>
-<p>Practice real interviews with AI feedback 🚀</p>
+<p>Practice real interviews with AI 🚀</p>
 
 <div class="card">
 
@@ -26,6 +26,9 @@
 
 <button onclick="startInterview()">Start Interview</button>
 
+<h3 id="progressText"></h3>
+<h3 id="timer">⏱️ 30s</h3>
+
 <h2 id="question"></h2>
 
 <textarea id="answer" placeholder="Write or speak your answer"></textarea>
@@ -36,6 +39,8 @@
 <button onclick="nextQuestion()">Next ➡️</button>
 </div>
 
+<button onclick="finishInterview()">Finish Interview</button>
+
 <h3 id="feedback"></h3>
 
 <progress id="scoreBar" value="0" max="100"></progress>
@@ -45,5 +50,6 @@
 </div>
 
 <script src="./script.js"></script>
+
 </body>
 </html>

@@ -1,3 +1,8 @@
+let currentQuestion = 0;
+let totalScore = 0;
+let timer;
+let timeLeft = 30;
+
 const questions = {
 "Software Developer":[
 "Tell me about yourself",
@@ -40,13 +45,34 @@ const questions = {
 };
 
 function startInterview(){
+currentQuestion = 0;
+totalScore = 0;
+nextQuestion();
+}
+
+function nextQuestion(){
+
 let role = document.getElementById("role").value;
 let roleQuestions = questions[role];
 
-let randomQuestion =
-roleQuestions[Math.floor(Math.random()*roleQuestions.length)];
+if(currentQuestion >= roleQuestions.length){
+finishInterview();
+return;
+}
 
-document.getElementById("question").innerText = randomQuestion;
+document.getElementById("question").innerText =
+roleQuestions[currentQuestion];
+
+document.getElementById("progressText").innerText =
+"Question " + (currentQuestion+1) + " / " + roleQuestions.length;
+
+document.getElementById("answer").value = "";
+document.getElementById("feedback").innerHTML = "";
+document.getElementById("scoreBar").value = 0;
+
+startTimer();
+
+currentQuestion++;
 }
 
 function checkAnswer(){
@@ -59,18 +85,38 @@ if(answer.length > 50) score += 30;
 if(answer.toLowerCase().includes("example")) score += 20;
 if(answer.toLowerCase().includes("project")) score += 20;
 
+totalScore += score;
+
 document.getElementById("feedback").innerHTML =
 "🔥 AI Score: " + score + "/100";
-
 document.getElementById("scoreBar").value = score;
 }
 
-function nextQuestion(){
-document.getElementById("answer").value = "";
-document.getElementById("feedback").innerHTML = "";
-document.getElementById("scoreBar").value = 0;
+function startTimer(){
+clearInterval(timer);
+timeLeft = 30;
 
-startInterview();
+timer = setInterval(()=>{
+timeLeft--;
+document.getElementById("timer").innerText =
+"⏱️ " + timeLeft + "s";
+
+if(timeLeft <= 0){
+clearInterval(timer);
+nextQuestion();
+}
+},1000);
+}
+
+function finishInterview(){
+clearInterval(timer);
+
+document.querySelector(".card").innerHTML = `
+<h2>🎯 Interview Finished</h2>
+<h3>Your Total Score: ${totalScore}</h3>
+<p>Great job! Keep improving 🚀</p>
+<button onclick="location.reload()">Restart</button>
+`;
 }
 
 function startVoice(){
