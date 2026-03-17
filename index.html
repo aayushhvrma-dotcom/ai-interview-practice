@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Interview Practice</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🤖 AI Interview Practice</h1>
+
+<div class="card">
+
+<label>Select Job Role</label>
+
+<select id="role">
+<option>Software Developer</option>
+<option>Web Developer</option>
+<option>Data Analyst</option>
+<option>HR Interview</option>
+<option>Product Manager</option>
+</select>
+<button onclick="startInterview()">Start Interview</button>
+
+<h2 id="question"></h2>
+
+<textarea id="answer" placeholder="Write or speak your answer"></textarea>
+
+<div class="buttons">
+<button onclick="startVoice()">🎤 Speak</button>
+<button onclick="checkAnswer()">Submit</button>
+</div>
+
+<h3 id="feedback"></h3>
+<progress id="scoreBar" value="0" max="100"></progress>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
