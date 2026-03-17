@@ -62,6 +62,10 @@ color:white;
 transform:scale(1.05);
 }
 
+button:active{
+transform:scale(0.95);
+}
+
 .buttons{
 display:flex;
 gap:10px;
@@ -70,13 +74,12 @@ margin-top:15px;
 
 .buttons button{
 flex:1;
-z-index: 2;
-position: relative;
 }
 
 #question{
 margin-top:20px;
 font-size:18px;
+min-height:40px;
 }
 
 #feedback{
@@ -88,16 +91,6 @@ font-weight:bold;
 progress{
 width:100%;
 height:15px;
-margin-top:10px;
-
-.buttons{
-position: relative;
-z-index: 2;
-}
-
-progress{
-position: relative;
-z-index: 1;
-margin-top: 15px;
-}
+margin-top:15px;
+display:block;
 }
