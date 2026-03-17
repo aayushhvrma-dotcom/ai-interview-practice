@@ -66,10 +66,8 @@ if(answer.includes("example")) score += 20;
 if(answer.includes("project")) score += 20;
 
 document.getElementById("feedback").innerHTML =
-"🔥 AI Score: " + score + "/100 <br>" +
-(score < 50 ? "Improve your answer!" :
-score < 80 ? "Good but needs examples" :
-"Excellent answer!");
-document.getElementById("scoreBar").value = score;
+"🔥 AI Score: " + score + "/100";
+
+document.getElementById("nextBtn").disabled = false;
 
 }
